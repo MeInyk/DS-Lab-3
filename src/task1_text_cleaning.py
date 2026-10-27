@@ -22,7 +22,18 @@ def clean_and_tokenize(text: str) -> List[str]:
         >>> clean_and_tokenize("Hello, World!")
         ['hello', 'world']
     """
-    pass
+
+    if not isinstance(text, str):
+        raise TypeError("Input text must be a string")
+
+    if not text.strip():
+        raise ValueError("Input text cannot be empty")
+
+    cleaned_text = re.sub(r"[^\w\s]", "", text)
+    cleaned_text = cleaned_text.lower()
+
+    tokens = word_tokenize(cleaned_text)
+
     return tokens
 
 
